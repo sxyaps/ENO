@@ -1,7 +1,12 @@
 'use client';
 export async function redirectToCheckout() {
   try {
-    const res = await fetch('/.netlify/functions/checkout_sessions', {
+    // Use Netlify function in production, Next.js API locally
+    const isNetlify = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+    const endpoint = isNetlify
+      ? '/.netlify/functions/checkout_sessions'
+      : '/api/checkout_sessions';
+    const res = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
