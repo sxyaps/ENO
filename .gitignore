@@ -5,3 +5,5 @@ out/
 .DS_Store
 netlify/
 node_modules
+
+.env.production
