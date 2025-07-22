@@ -17,10 +17,6 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [revealProducts, setRevealProducts] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
-  
-  // End date for countdown - 30 days from current date
-  const endDate = new Date();
-  endDate.setDate(endDate.getDate() + 30);
 
   // Mysterious brand messages for scrolling text
   const brandMessages = [
@@ -118,16 +114,17 @@ export default function Home() {
             <button
               id="checkout-button"
               onClick={redirectToCheckout}
-              className="border border-white/20 text-white/90 font-light px-8 py-4 text-sm tracking-widest hover:bg-white/5 transition-all duration-300 relative"
+              className="border border-white/20 text-white/90 font-light px-8 py-4 text-sm tracking-widest hover:bg-white/5 transition-all duration-300 relative mb-16"
             >
               <span className="relative z-10">PRE-ORDER ACCESS – €99</span>
               <div className="absolute inset-0 bg-white/5 transform origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></div>
             </button>
+            
+            {/* Countdown Timer with proper spacing */}
+            <div className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '1000ms' }}>
+              <CountdownTimer />
+            </div>
           </div>
-        </div>
-
-        <div className={`absolute bottom-10 w-full flex justify-center transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '1000ms' }}>
-          <CountdownTimer endDate={endDate} />
         </div>
       </section>
 
